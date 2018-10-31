@@ -13,7 +13,7 @@
 
 enum Color {White, Black};
 enum PieceType{
-  PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING
+  Pawn, Rook, Knight, Bishop, Queen, King
 };
 
 struct ChessPiece{
@@ -31,3 +31,5 @@ typedef ChessSquare ChessBoard[8] [8];
 bool is_piece(struct ChessPiece piece, enum Color color, enum PieceType type);
 
 void init_chess_board(ChessBoard chess_board);
+
+void get_square(struct ChessSquare);
