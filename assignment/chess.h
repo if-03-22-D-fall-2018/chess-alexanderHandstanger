@@ -27,9 +27,14 @@ struct ChessSquare{
 };
 
 typedef ChessSquare ChessBoard[8] [8];
+typedef int Rank;
+typedef int File;
+typedef ChessSquare Chessboard[8] [8];
 
 bool is_piece(struct ChessPiece piece, enum Color color, enum PieceType type);
 
 void init_chess_board(ChessBoard chess_board);
 
-void get_square(struct ChessSquare);
+struct ChessSquare* get_square(Chessboard chess_board, File file, Rank rank);
+
+bool is_square_occupied(ChessBoard chess_board, File file, Rank rank);
