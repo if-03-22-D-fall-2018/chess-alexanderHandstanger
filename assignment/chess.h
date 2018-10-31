@@ -11,6 +11,7 @@
  * ----------------------------------------------------------
  */
 
+enum Move{NoPiece, NormalMove, CaptureMove};
 enum Color {White, Black};
 enum PieceType{
   Pawn, Rook, Knight, Bishop, Queen, King
@@ -50,3 +51,13 @@ bool remove_piece(ChessBoard chess_board, File file, Rank rank);
 bool squares_share_file(File file, Rank rank, File file1, Rank rank1);
 
 bool squares_share_rank(File file, Rank rank, File file1, Rank rank1);
+
+bool squares_share_diagonal(File file, Rank rank, File file1, Rank rank1);
+
+bool squares_share_kings_move(File file, Rank rank, File file1, Rank rank1);
+
+bool squares_share_pawns_move(enum Color color,NormalMove, File file, Rank rank, File file1, Rank rank1);
+
+bool squares_share_queens_move(File file, Rank rank, File file1, Rank rank1);
+
+bool squares_share_knights_move(File file, Rank rank, File file1, Rank rank1);
