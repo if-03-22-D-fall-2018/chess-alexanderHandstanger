@@ -145,15 +145,15 @@ bool remove_piece(ChessBoard chess_board, File file, Rank rank){
 }
 
 bool squares_share_file(File file, Rank rank, File file1, Rank rank1){
-
+  return file == file1;
 }
 
 bool squares_share_rank(File file, Rank rank, File file1, Rank rank1){
-
+  return rank == rank1;
 }
 
 bool squares_share_diagonal(File file, Rank rank, File file1, Rank rank1){
-
+  return file == file1 && rank == rank1;
 }
 
 bool squares_share_kings_move(File file, Rank rank, File file1, Rank rank1){
