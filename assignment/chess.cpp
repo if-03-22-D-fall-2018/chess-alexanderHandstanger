@@ -49,6 +49,7 @@ bool add_piece(ChessBoard chess_board, File file, Rank rank, struct ChessPiece p
 }
 
 struct ChessPiece get_piece(ChessBoard chess_board, File file, Rank rank){
+  struct ChessPiece piece;
   if(file >= 8 || rank >= 8 || file < 0 || rank < 0 ||chess_board[rank][file].is_occupied == false){
     piece.type = NoPiece;
     return piece;
@@ -60,83 +61,87 @@ struct ChessPiece get_piece(ChessBoard chess_board, File file, Rank rank){
 
 void setup_chess_board(ChessBoard chess_board){
   //White Pawn(Bauer)
-  for(i = 1; i < 8; i++){
+  for(size_t i = 1; i < 8; i++){
     chess_board[1][i].piece.type = Pawn;
-    chess_board[1][i].color = White;
+    chess_board[1][i].piece.color = White;
     chess_board[1][i].is_occupied = true;
   }
   //Black Pawn(Bauer)
-  for(i = 1; i < 8; i++){
+  for(size_t i = 1; i < 8; i++){
     chess_board[6][i].piece.type = Pawn;
-    chess_board[6][i].color = Black;
+    chess_board[6][i].piece.color = Black;
     chess_board[6][i].is_occupied = true;
   }
   //White Rook(Turm)
   chess_board[0][0].piece.type = Rook;
-  chess_board[0][0].color = White;
+  chess_board[0][0].piece.color = White;
   chess_board[0][0].is_occupied = true;
   chess_board[0][7].piece.type = Rook;
-  chess_board[0][7].color = White;
+  chess_board[0][7].piece.color = White;
   chess_board[0][7].is_occupied = true;
   //Black Rook(Turm)
   chess_board[7][0].piece.type = Rook;
-  chess_board[7][0].color = Black;
+  chess_board[7][0].piece.color = Black;
   chess_board[7][0].is_occupied = true;
   chess_board[7][7].piece.type = Rook;
-  chess_board[7][7].color = Black;
+  chess_board[7][7].piece.color = Black;
   chess_board[7][7].is_occupied = true;
 
   //White Knight(Pferd)
   chess_board[0][1].piece.type = Knight;
-  chess_board[0][1].color = White;
+  chess_board[0][1].piece.color = White;
   chess_board[0][1].is_occupied = true;
   chess_board[0][6].piece.type = Knight;
-  chess_board[0][6].color = White;
+  chess_board[0][6].piece.color = White;
   chess_board[0][6].is_occupied = true;
   //Black Knight(Pferd)
   chess_board[7][1].piece.type = Knight;
-  chess_board[7][1].color = Black;
+  chess_board[7][1].piece.color = Black;
   chess_board[7][1].is_occupied = true;
   chess_board[7][6].piece.type = Knight;
-  chess_board[7][6].color = Black;
+  chess_board[7][6].piece.color = Black;
   chess_board[7][6].is_occupied = true;
 
   //White Bishop(Läufer)
   chess_board[0][2].piece.type = Bishop;
-  chess_board[0][2].color = White;
+  chess_board[0][2].piece.color = White;
   chess_board[0][2].is_occupied = true;
   chess_board[0][5].piece.type = Bishop;
-  chess_board[0][5].color = White;
+  chess_board[0][5].piece.color = White;
   chess_board[0][5].is_occupied = true;
   //Black Bishop(Läufer)
   chess_board[7][2].piece.type = Bishop;
-  chess_board[7][2].color = Black;
+  chess_board[7][2].piece.color = Black;
   chess_board[7][2].is_occupied = true;
   chess_board[7][5].piece.type = Bishop;
-  chess_board[7][5].color = Black;
+  chess_board[7][5].piece.color = Black;
   chess_board[7][5].is_occupied = true;
 
   //White Queen(Dame)
   chess_board[0][4].piece.type = Queen;
-  chess_board[0][4].color = White;
+  chess_board[0][4].piece.color = White;
   chess_board[0][4].is_occupied = true;
   //Black Queen(Dame)
   chess_board[7][4].piece.type = Queen;
-  chess_board[7][4].color = Black;
+  chess_board[7][4].piece.color = Black;
   chess_board[7][4].is_occupied = true;
 
   //White King(König)
   chess_board[0][3].piece.type = King;
-  chess_board[0][3].color = White;
+  chess_board[0][3].piece.color = White;
   chess_board[0][3].is_occupied = true;
   //Black King(König)
   chess_board[7][3].piece.type = King;
-  chess_board[7][3].color = Black;
+  chess_board[7][3].piece.color = Black;
   chess_board[7][3].is_occupied = true;
 }
 
 bool remove_piece(ChessBoard chess_board, File file, Rank rank){
-
+  if(file >= 8 || rank >= 8 || file < 0 || rank < 0 ||chess_board[rank][file].is_occupied == false){
+    return false;
+  }
+  chess_board[rank][file].is_occupied = false;
+  return true;
 }
 
 bool squares_share_file(File file, Rank rank, File file1, Rank rank1){
