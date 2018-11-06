@@ -34,19 +34,28 @@ struct ChessSquare* get_square(ChessBoard chess_board, File file, Rank rank){
   if((file > 'h' || file < 'a') && (rank > 8 || rank < 1)){
     return 0;
   }
-  return &chess_board[rank][file];;
+  return &chess_board[rank][file];
 }
 
 bool is_square_occupied(ChessBoard chess_board, File file, Rank rank){
-
+  return chess_board[rank][file].is_occupied == true;
 }
 
 bool add_piece(ChessBoard chess_board, File file, Rank rank, struct ChessPiece piece){
-
+  if(file >= 8 || rank >= 8 || file < 0 || rank < 0 ||chess_board[rank][file].is_occupied == true){
+    return false;
+  }
+  chess_board[rank][file].piece = piece;
 }
 
 struct ChessPiece get_piece(ChessBoard chess_board, File file, Rank rank){
-
+  if(file >= 8 || rank >= 8 || file < 0 || rank < 0 ||chess_board[rank][file].is_occupied == false){
+    piece.type = NoPiece;
+    return piece;
+  }
+  piece.type=chess_board[rank][file].piece.type;
+  piece.color=chess_board[rank][file].piece.color;
+  return piece;
 }
 
 void setup_chess_board(ChessBoard chess_board){
