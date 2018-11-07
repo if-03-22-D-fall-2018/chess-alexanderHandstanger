@@ -195,5 +195,24 @@ bool squares_share_queens_move(File file, Rank rank, File file1, Rank rank1){
 }
 
 bool squares_share_knights_move(File file, Rank rank, File file1, Rank rank1){
+  for(size_t i = rank; i < 8-rank; i++){
+    if(chess_board[rank + i][file] == chess_board[rank1][file1]){
+      return true;
+    }
+  }
+  for(size_t i = rank; i < 8-rank; i--){
+    if(chess_board[rank - i][file] == chess_board[rank1][file1]){
+      return true;
+  }
 
+  for(size_t i = file; i < 8-file; i++){
+    if(chess_board[rank][file+i] == chess_board[rank1][file1]){
+      return true;
+    }
+  }
+  for(size_t i = file; i < 8-file; i--){
+    if(chess_board[rank][file-i] == chess_board[rank1][file1]){
+      return true;
+  }
+  return false;
 }
