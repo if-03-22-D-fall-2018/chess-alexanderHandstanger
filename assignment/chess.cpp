@@ -157,7 +157,33 @@ bool squares_share_diagonal(File file, Rank rank, File file1, Rank rank1){
 }
 
 bool squares_share_kings_move(File file, Rank rank, File file1, Rank rank1){
-
+  if(chess_board[rank-1][file-1] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank][file-1] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank+1][file-1] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank-1][file] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank+1][file] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank-1][file+1] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank][file+1] == chess_board[rank1][file1]){
+    return true;
+  }
+  else if(chess_board[rank+1][file+1] == chess_board[rank1][file1]){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 bool squares_share_pawns_move(enum Color color, enum Move NormalMove, File file, Rank rank, File file1, Rank rank1){
