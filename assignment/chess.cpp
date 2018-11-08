@@ -119,10 +119,10 @@ void setup_chess_board(ChessBoard chess_board){
 }
 
 bool remove_piece(ChessBoard chess_board, File file, Rank rank){
-  if(file >= 8 || rank >= 8 || file < 0 || rank < 0 ||chess_board[rank][file].is_occupied == false){
+  if(file > 'h' || rank > 8 || file < 'a' || rank < 1 ||chess_board[rank-1][file-'a'].is_occupied == false){
     return false;
   }
-  chess_board[rank][file].is_occupied = false;
+  chess_board[rank-1][file-'a'].is_occupied = false;
   return true;
 }
 
