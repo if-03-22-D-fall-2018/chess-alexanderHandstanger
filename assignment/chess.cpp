@@ -63,80 +63,59 @@ struct ChessPiece get_piece(ChessBoard chess_board, File file, Rank rank){
 }
 
 void setup_chess_board(ChessBoard chess_board){
+  struct ChessPiece white_pawn = {White, Pawn};
+  struct ChessPiece white_rook = {White, Rook};
+  struct ChessPiece white_knight = {White, Knight};
+  struct ChessPiece white_bishop = {White, Bishop};
+  struct ChessPiece white_queen = {White, Queen};
+  struct ChessPiece white_king = {White, King};
+
+  struct ChessPiece black_pawn = {Black, Pawn};
+  struct ChessPiece black_rook = {Black, Rook};
+  struct ChessPiece black_knight = {Black, Knight};
+  struct ChessPiece black_bishop = {Black, Bishop};
+  struct ChessPiece black_queen = {Black, Queen};
+  struct ChessPiece black_king = {Black, King};
+
+  init_chess_board(chess_board);
   //White Pawn(Bauer)
-  for(size_t i = 0; i < 8; i++){
-    chess_board[1][i].piece.type = Pawn;
-    chess_board[1][i].piece.color = White;
-    chess_board[1][i].is_occupied = true;
+  for(File file = 'a'; file <= 'h'; file++){
+    add_piece(chess_board, file, 2, white_pawn);
   }
   //Black Pawn(Bauer)
-  for(size_t i = 0; i < 8; i++){
-    chess_board[6][i].piece.type = Pawn;
-    chess_board[6][i].piece.color = Black;
-    chess_board[6][i].is_occupied = true;
+  for(File file = 'a'; file <= 'h'; file++){
+    add_piece(chess_board, file, 7, black_pawn);
   }
   //White Rook(Turm)
-  chess_board[0][0].piece.type = Rook;
-  chess_board[0][0].piece.color = White;
-  chess_board[0][0].is_occupied = true;
-  chess_board[0][7].piece.type = Rook;
-  chess_board[0][7].piece.color = White;
-  chess_board[0][7].is_occupied = true;
+  add_piece(chess_board, 'a', 1, white_rook);
+  add_piece(chess_board, 'h', 1, white_rook);
   //Black Rook(Turm)
-  chess_board[7][0].piece.type = Rook;
-  chess_board[7][0].piece.color = Black;
-  chess_board[7][0].is_occupied = true;
-  chess_board[7][7].piece.type = Rook;
-  chess_board[7][7].piece.color = Black;
-  chess_board[7][7].is_occupied = true;
+  add_piece(chess_board, 'a', 8, black_rook);
+  add_piece(chess_board, 'h', 8, black_rook);
 
   //White Knight(Pferd)
-  chess_board[0][1].piece.type = Knight;
-  chess_board[0][1].piece.color = White;
-  chess_board[0][1].is_occupied = true;
-  chess_board[0][6].piece.type = Knight;
-  chess_board[0][6].piece.color = White;
-  chess_board[0][6].is_occupied = true;
+  add_piece(chess_board, 'b', 1, white_knight);
+  add_piece(chess_board, 'g', 1, white_knight);
   //Black Knight(Pferd)
-  chess_board[7][1].piece.type = Knight;
-  chess_board[7][1].piece.color = Black;
-  chess_board[7][1].is_occupied = true;
-  chess_board[7][6].piece.type = Knight;
-  chess_board[7][6].piece.color = Black;
-  chess_board[7][6].is_occupied = true;
+  add_piece(chess_board, 'b', 8, black_knight);
+  add_piece(chess_board, 'g', 8, black_knight);
 
   //White Bishop(Läufer)
-  chess_board[0][2].piece.type = Bishop;
-  chess_board[0][2].piece.color = White;
-  chess_board[0][2].is_occupied = true;
-  chess_board[0][5].piece.type = Bishop;
-  chess_board[0][5].piece.color = White;
-  chess_board[0][5].is_occupied = true;
+  add_piece(chess_board, 'c', 1, white_bishop);
+  add_piece(chess_board, 'f', 1, white_bishop);
   //Black Bishop(Läufer)
-  chess_board[7][2].piece.type = Bishop;
-  chess_board[7][2].piece.color = Black;
-  chess_board[7][2].is_occupied = true;
-  chess_board[7][5].piece.type = Bishop;
-  chess_board[7][5].piece.color = Black;
-  chess_board[7][5].is_occupied = true;
+  add_piece(chess_board, 'c', 8, black_bishop);
+  add_piece(chess_board, 'f', 8, black_bishop);
 
   //White Queen(Dame)
-  chess_board[0][3].piece.type = Queen;
-  chess_board[0][3].piece.color = White;
-  chess_board[0][3].is_occupied = true;
+  add_piece(chess_board, 'd', 1, white_queen);
   //Black Queen(Dame)
-  chess_board[7][3].piece.type = Queen;
-  chess_board[7][3].piece.color = Black;
-  chess_board[7][3].is_occupied = true;
+  add_piece(chess_board, 'd', 8, black_queen);
 
   //White King(König)
-  chess_board[0][4].piece.type = King;
-  chess_board[0][4].piece.color = White;
-  chess_board[0][4].is_occupied = true;
+  add_piece(chess_board, 'e', 1, white_king);
   //Black King(König)
-  chess_board[7][4].piece.type = King;
-  chess_board[7][4].piece.color = Black;
-  chess_board[7][4].is_occupied = true;
+  add_piece(chess_board, 'e', 8, black_king);
 }
 
 bool remove_piece(ChessBoard chess_board, File file, Rank rank){
