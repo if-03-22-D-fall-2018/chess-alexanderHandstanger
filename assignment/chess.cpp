@@ -139,6 +139,30 @@ bool squares_share_diagonal(File file, Rank rank, File file1, Rank rank1){
 }
 
 bool squares_share_kings_move(File file, Rank rank, File file1, Rank rank1){
+  if(rank-1 == rank1 && file-1 == file1){
+    return true;
+  }
+  if(rank-1 == rank1 && file == file1){
+    return true;
+  }
+  if(rank-1 == rank1 && file+1 == file1){
+    return true;
+  }
+  if(rank == rank1 && file-1 == file1){
+    return true;
+  }
+  if(rank == rank1 && file+1 == file1){
+    return true;
+  }
+  if(rank+1 == rank1 && file-1 == file1){
+    return true;
+  }
+  if(rank+1 == rank1 && file == file1){
+    return true;
+  }
+  if(rank+1 == rank1 && file+1 == file1){
+    return true;
+  }
   return false;
 }
 
@@ -148,79 +172,59 @@ bool squares_share_pawns_move(enum Color color, enum Move NormalMove, File file,
 
 bool squares_share_queens_move(File file, Rank rank, File file1, Rank rank1){
   //horizontally + vertical
-  // for(size_t i = rank; i < 8-rank; i++){
-  //   if(chess_board[rank + i][file] == chess_board[rank1][file1]){
-  //     return true;
-  //   }
-  // }
-  // for(size_t i = rank; i < 8-rank; i--){
-  //   if(chess_board[rank - i][file] == chess_board[rank1][file1]){
-  //     return true;
-  // }
-  //
-  // for(size_t i = file; i < 8-file; i++){
-  //   if(chess_board[rank][file+i] == chess_board[rank1][file1]){
-  //     return true;
-  //   }
-  // }
-  // for(size_t i = file; i < 8-file; i--){
-  //   if(chess_board[rank][file-i] == chess_board[rank1][file1]){
-  //     return true;
-  // }
+  for(size_t i = rank; i < 8 - rank; i++){
+    if(rank + i == rank1 && file == file1){
+      return true;
+    }
+  }
+  for(size_t i = rank; i < 8-rank; i++){
+    if(rank - i == rank1 && file == file1){
+      return true;
+    }
+  }
+  for(size_t i = file; i < 8 - file; i++){
+    if(rank == rank1 && file+i == file1){
+      return true;
+    }
+  }
+  for(size_t i = file; i < 8-file; i++){
+    if(rank == rank1 && file-1 == file1){
+      return true;
+    }
+  }
   // //diagonal
-  // for(size_t i = rank; i < 8-rank; i++){
-  //   for(size_t j = file; j < 8-file; j++){
-  //     if(chess_board[rank + i][file + i] == chess_board[rank1][file1]){
-  //       return true;
-  //     }
-  //   }
-  // }
-  //
-  // for(size_t i = rank; i < 8-rank; i++){
-  //   for(size_t j = file; j < 8-file; j++){
-  //     if(chess_board[rank - i][file - i] == chess_board[rank1][file1]){
-  //       return true;
-  //     }
-  //   }
-  // }
-  //
-  // for(size_t i = rank; i < 8-rank; i++){
-  //   for(size_t j = file; j < 8-file; j++){
-  //     if(chess_board[rank + i][file - i] == chess_board[rank1][file1]){
-  //       return true;
-  //     }
-  //   }
-  // }
-  //
-  // for(size_t i = rank; i < 8-rank; i++){
-  //   for(size_t j = file; j < 8-file; j++){
-  //     if(chess_board[rank - i][file + i] == chess_board[rank1][file1]){
-  //       return true;
-  //     }
-  //   }
-  // }
+  for(size_t i = rank; i < 8-rank; i++){
+    for (size_t j = file; j < 8-file; i++) {
+      if(rank + 1 == rank1 && file + 1 == file){
+        return true;
+      }
+    }
+  }
+  for(size_t i = rank; i < 8-rank; i++){
+    for (size_t j = file; j < 8-file; i++) {
+      if(rank - 1 == rank1 && file - 1 == file){
+        return true;
+      }
+    }
+  }
+  for(size_t i = rank; i < 8-rank; i++){
+    for (size_t j = file; j < 8-file; i++) {
+      if(rank + 1 == rank1 && file - 1 == file){
+        return true;
+      }
+    }
+  }
+  for(size_t i = rank; i < 8-rank; i++){
+    for (size_t j = file; j < 8-file; i++) {
+      if(rank - 1 == rank1 && file + 1 == file){
+        return true;
+      }
+    }
+  }
   return false;
 }
 
 bool squares_share_knights_move(File file, Rank rank, File file1, Rank rank1){
-  // for(size_t i = rank; i < 8-rank; i++){
-  //   if(chess_board[rank + i][file] == chess_board[rank1][file1]){
-  //     return true;
-  //   }
-  // }
-  // for(size_t i = rank; i < 8-rank; i--){
-  //   if(chess_board[rank - i][file] == chess_board[rank1][file1]){
-  //     return true;
-  // }
-  //
-  // for(size_t i = file; i < 8-file; i++){
-  //   if(chess_board[rank][file+i] == chess_board[rank1][file1]){
-  //     return true;
-  //   }
-  // }
-  // for(size_t i = file; i < 8-file; i--){
-  //   if(chess_board[rank][file-i] == chess_board[rank1][file1]){
-  //     return true;
-  // }
+
   return false;
 }
