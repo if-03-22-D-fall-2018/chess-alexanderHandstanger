@@ -127,10 +127,16 @@ bool remove_piece(ChessBoard chess_board, File file, Rank rank){
 }
 
 bool squares_share_file(File file, Rank rank, File file1, Rank rank1){
+  if(file > 'h' || rank > 8 || file < 'a' || rank < 1){
+    return false;
+  }
   return file == file1;
 }
 
 bool squares_share_rank(File file, Rank rank, File file1, Rank rank1){
+  if(file > 'h' || rank > 8 || file < 'a' || rank < 1){
+    return false;
+  }
   return rank == rank1;
 }
 
