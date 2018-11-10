@@ -179,23 +179,33 @@ bool squares_share_pawns_move(enum Color color, enum Move move, File file, Rank 
   if(file > 'h' || rank > 8 || file < 'a' || rank < 1 || file1 > 'h' || rank1 > 8 || file1 < 'a' || rank1 < 1){
     return false;
   }
-  if(color==White){
-    if(move==NormalMove){
-      if(rank == 2){
-        return (rank+1==rank1 || rank+2==rank1)&&file==file1;
+  if(color == White){
+    if(rank > 1){
+      if(move == NormalMove){
+        if(rank == 2){
+          return file == file1 && (rank + 1 == rank1 || rank + 2 == rank1);
+        }
+        else{
+          return file == file1 && rank + 1 == rank1;
+        }
       }
       else{
-        return rank+1==rank1&&(file+1==file1 || file-1==file1);
+        return rank + 1 == rank1 && (file + 1 == file1 || file - 1 == file1);
       }
     }
   }
-  else if(color==Black){
-    if(move==NormalMove){
-      if(rank == 7){
-        return (rank-1==rank1 || rank-2==rank1)&&file==file1;
+  else{
+    if(rank < 8){
+      if(move == NormalMove){
+        if(rank == 7){
+          return file == file1 && (rank - 1 == rank1 || rank - 2 == rank1);
+        }
+        else{
+          return file == file1 && rank - 1 == rank1;
+        }
       }
       else{
-        return rank-1==rank1&&(file-1==file1 || file+1==file1);
+        return rank - 1 == rank1 && (file + 1 == file1 || file - 1 == file1);
       }
     }
   }
